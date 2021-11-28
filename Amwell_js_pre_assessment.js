@@ -10,7 +10,7 @@
 // Converting to an Angular app or typescript is not considered a necessity here.
 // We're mostly interested in understanding how engineers can critique the code & suggest improvements.
 
-let isPrimeNumber = (num) => {
+const isPrimeNumber = (num) => {
     for (let i = 2; i < num; i++)
         if (num % i === 0) return false;
     return num > 1;
