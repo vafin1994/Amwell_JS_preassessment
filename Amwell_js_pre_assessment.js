@@ -10,37 +10,29 @@
 // Converting to an Angular app or typescript is not considered a necessity here.
 // We're mostly interested in understanding how engineers can critique the code & suggest improvements.
 
-var ispnum = function(num) {
-    for(var i = 2; i < num; i++)
-        if  (num % i === 0) return false;
+const isPrimeNumber = (num) => {
+    for (let i = 2; i < num; i++)
+        if (num % i === 0) return false;
     return num > 1;
 };
 
-const fibonacci = (num) => {
-    if (num <= 1)return 1;
-    return fibonacci(num - 1) + fibonacci(num - 2);
+const returnNextFibonacciNumber = (num) => {
+    if (num <= 1) return 1;
+    return returnNextFibonacciNumber(num - 1) + returnNextFibonacciNumber(num - 2);
 };
 
-function nxtPrmFib(number) {
-    let r = 0;
-    let l = 1;
-    while (true) {
-        var fib = fibonacci(l);
+function nextPrimeFibonacciNumber(number) {
+    for (let l = 1; ; l++) {
+        const fib = returnNextFibonacciNumber(l);
         console.log('fib', fib, number);
-        if (fib > number) {
-            if (ispnum(fib)) {
-                r = fib;
-                break;
-            } else {
-                l = l + 1;
-                console.warn('bumping to ', fib);
-            }
+        if (fib > number && isPrimeNumber(fib)) {
+            console.warn('Next prime fib ', fib);
+            return;
         } else {
-            l = l + 1;
             console.warn('bumping to', fib);
         }
     }
-    console.warn('Next prime fib ', r);
 }
 
-nxtPrmFib(20);
+nextPrimeFibonacciNumber(20);
+
